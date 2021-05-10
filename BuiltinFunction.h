@@ -7,11 +7,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Utility.h"
+#include "HistoryManager.h"
 enum builtin {
     PWD, CD, LS, SORT, HIST, EXIT, LAST_CMD
 };
 const char* builtin_functions[BUILTIN_SIZE];
+
 void ls();
 void pwd();
 void cd(char* new_dir);
+void sort(char* filename);
+void display_history();
+void last_command();
 #endif

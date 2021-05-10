@@ -15,3 +15,18 @@ struct Command parse_command(char command[]){
     cmd.argv[i] = NULL;
     return cmd;
 }
+
+enum LineType classify_line(char line[]){
+    size_t len = strlen(line);
+    size_t i;
+    for (i = 0; i < len; ++i){
+        if (line[i] == '&')
+            return BACKGROUND;
+        else if (line[i] == '<' || line[i] == '>'){
+            return REDIRECT;
+        }
+        else if (line[i] == '|')
+            return PIPE;
+    }
+    return FOREGROUND;
+}
