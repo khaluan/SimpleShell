@@ -15,9 +15,12 @@ void init(){
 }
 
 void push_history(char * newHistory) {
+
     for (int i = historySize - 1; i > 0; --i) {
         if (history[i - 1] == NULL) continue;
-        history[i] = history[i-1];
+        else if (history[i] != NULL) free(history[i]);
+
+        history[i] = history[i - 1];
     }
     history[0] = newHistory;
 }
@@ -75,6 +78,7 @@ char * read_input() {
                 printf("nhantest> ");
                 printf("%s", input);
             }
+            free(input);
         }
         else {
             push_history(input);
