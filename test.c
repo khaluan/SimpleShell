@@ -16,9 +16,13 @@ void init(){
 
 void push_history(char * newHistory) {
 
+    if (history[historySize - 1] != NULL) {
+        free(history[historySize - 1]);
+        history[historySize -1] = NULL;
+    }
+
     for (int i = historySize - 1; i > 0; --i) {
         if (history[i - 1] == NULL) continue;
-        else if (history[i] != NULL) free(history[i]);
 
         history[i] = history[i - 1];
     }
@@ -70,6 +74,8 @@ char * read_input() {
         char * input = take_an_input();
 
         if (string_compare(input, "!!") == 1) {
+           free(input);
+           input = NULL;
            if (history[0] == NULL) {
                 printf("No commands in history ! \n");
             }
@@ -78,7 +84,6 @@ char * read_input() {
                 printf("nhantest> ");
                 printf("%s", input);
             }
-            free(input);
         }
         else {
             push_history(input);
@@ -86,6 +91,12 @@ char * read_input() {
         }
         
         return input;
+}
+
+void display_history(){
+        for (int i = historySize - 1; i >= 0; --i) {
+                if (history[i] != NULL) printf("%s", history[i]);
+        }
 }
 
 int main() {
@@ -106,9 +117,7 @@ int main() {
             break;
         }
         else if (string_compare(input, "history") == 1) {
-            for (int i = historySize - 1; i >= 0; --i) {
-                if (history[i] != NULL) printf("%s", history[i]);
-            }
+            display_history();
         }
 
     }
