@@ -34,7 +34,7 @@ void push_history(char* newHistory){
     history[0] = strdup(newHistory);
 }
 
-void clean(){
+void clean_history(){
     for (int i = 0; i < HISTORY_SIZE; ++i) {
         if (history[i] != NULL) free(history[i]);
     }

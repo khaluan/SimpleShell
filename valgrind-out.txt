@@ -1,0 +1,389 @@
+==5654== Memcheck, a memory error detector
+==5654== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==5654== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
+==5654== Command: ./test.out
+==5654== Parent PID: 5653
+==5654== 
+--5654-- 
+--5654-- Valgrind options:
+--5654--    --leak-check=full
+--5654--    --show-leak-kinds=all
+--5654--    --track-origins=yes
+--5654--    --verbose
+--5654--    --log-file=valgrind-out.txt
+--5654-- Contents of /proc/version:
+--5654--   Linux version 4.4.0-19041-Microsoft (Microsoft@Microsoft.com) (gcc version 5.4.0 (GCC) ) #488-Microsoft Mon Sep 01 13:43:00 PST 2020
+--5654-- 
+--5654-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-rdtscp-sse3-ssse3-avx
+--5654-- Page sizes: currently 4096, max supported 4096
+--5654-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+--5654-- Reading syms from /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out
+--5654-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
+--5654--   Considering /usr/lib/x86_64-linux-gnu/ld-2.31.so ..
+--5654--   .. CRC mismatch (computed 975d0390 wanted 30bd717f)
+--5654--   Considering /lib/x86_64-linux-gnu/ld-2.31.so ..
+--5654--   .. CRC mismatch (computed 975d0390 wanted 30bd717f)
+--5654--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.31.so ..
+--5654--   .. CRC is valid
+--5654-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
+--5654--    object doesn't have a symbol table
+--5654--    object doesn't have a dynamic symbol table
+--5654-- Scheduler: using generic scheduler lock implementation.
+--5654-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==5654== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-5654-by-naul-on-???
+==5654== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-5654-by-naul-on-???
+==5654== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-5654-by-naul-on-???
+==5654== 
+==5654== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==5654== don't want to do, unless you know exactly what you're doing,
+==5654== or are doing some strange experiment):
+==5654==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=5654 ...command...
+==5654== 
+==5654== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==5654==   /path/to/gdb ./test.out
+==5654== and then give GDB the following command
+==5654==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=5654
+==5654== --pid is optional if only one valgrind process is running
+==5654== 
+==5654== error calling PR_SET_PTRACER, vgdb might block
+--5654-- REDIR: 0x4022e10 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (???)
+--5654-- REDIR: 0x4022be0 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (???)
+--5654-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--5654--    object doesn't have a symbol table
+--5654-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+--5654--    object doesn't have a symbol table
+==5654== WARNING: new redirection conflicts with existing -- ignoring it
+--5654--     old: 0x04022e10 (strlen              ) R-> (0000.0) 0x580c9ce2 ???
+--5654--     new: 0x04022e10 (strlen              ) R-> (2007.0) 0x0483f060 strlen
+--5654-- REDIR: 0x401f5f0 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483ffd0 (strcmp)
+--5654-- REDIR: 0x4023370 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4843a20 (mempcpy)
+--5654-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
+--5654--   Considering /usr/lib/x86_64-linux-gnu/libc-2.31.so ..
+--5654--   .. CRC mismatch (computed 86b78530 wanted e380f01c)
+--5654--   Considering /lib/x86_64-linux-gnu/libc-2.31.so ..
+--5654--   .. CRC mismatch (computed 86b78530 wanted e380f01c)
+--5654--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.31.so ..
+--5654--   .. CRC is valid
+--5654-- REDIR: 0x48f5600 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f4900 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f5930 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f4220 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f4960 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f6dd0 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x4911e60 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x49119a0 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f5760 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f5590 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f4890 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f42d0 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f56c0 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x4911960 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f47f0 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f43b0 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f5980 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f4350 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f5ad0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x49130d0 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x49119e0 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f49a0 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f4280 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f47b0 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48fdd20 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f59d0 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f5550 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x4911ab0 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f4c60 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f58d0 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f5870 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f6e10 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f5a20 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x48f5470 (libc.so.6:strstr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--5654-- REDIR: 0x4906a30 (libc.so.6:__strrchr_sse2) redirected to 0x483ea70 (__strrchr_sse2)
+--5654-- REDIR: 0x4910560 (libc.so.6:__strstr_sse2_unaligned) redirected to 0x4843c20 (strstr)
+--5654-- REDIR: 0x490c2a0 (libc.so.6:__strncpy_sse2_unaligned) redirected to 0x483f560 (__strncpy_sse2_unaligned)
+--5654-- REDIR: 0x490ecc0 (libc.so.6:__strcat_sse2_unaligned) redirected to 0x483ec20 (strcat)
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC2D: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x1092D1: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC37: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x1092D1: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC41: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x1092D1: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC2D: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x1092EA: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC37: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x1092EA: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+--5654-- REDIR: 0x4906d30 (libc.so.6:__strlen_sse2) redirected to 0x483efa0 (__strlen_sse2)
+--5654-- REDIR: 0x48ef260 (libc.so.6:malloc) redirected to 0x483b780 (malloc)
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC57: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x1092D1: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC2D: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x109360: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC37: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x109360: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EFA9: __strlen_sse2 (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x48F4502: strdup (strdup.c:41)
+==5654==    by 0x10936F: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EFB8: __strlen_sse2 (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x48F4502: strdup (strdup.c:41)
+==5654==    by 0x10936F: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+--5654-- REDIR: 0x4910c40 (libc.so.6:memcpy@GLIBC_2.2.5) redirected to 0x4840100 (memcpy@GLIBC_2.2.5)
+--5654-- REDIR: 0x4906820 (libc.so.6:__strchrnul_sse2) redirected to 0x4843540 (strchrnul)
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EFA9: __strlen_sse2 (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x48CDE94: __vfprintf_internal (vfprintf-internal.c:1688)
+==5654==    by 0x48B6EBE: printf (printf.c:33)
+==5654==    by 0x1093DA: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EFB8: __strlen_sse2 (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x48CDE94: __vfprintf_internal (vfprintf-internal.c:1688)
+==5654==    by 0x48B6EBE: printf (printf.c:33)
+==5654==    by 0x1093DA: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x48E488F: _IO_new_file_xsputn (fileops.c:1219)
+==5654==    by 0x48E488F: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==5654==    by 0x48CC27B: __vfprintf_internal (vfprintf-internal.c:1688)
+==5654==    by 0x48B6EBE: printf (printf.c:33)
+==5654==    by 0x1093DA: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+--5654-- REDIR: 0x4910c20 (libc.so.6:__mempcpy_sse2_unaligned) redirected to 0x4843660 (mempcpy)
+--5654-- REDIR: 0x48ef850 (libc.so.6:free) redirected to 0x483c9d0 (free)
+==5654== Syscall param write(buf) points to uninitialised byte(s)
+==5654==    at 0x49631E7: write (write.c:26)
+==5654==    by 0x48E400C: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1181)
+==5654==    by 0x48E5AD0: new_do_write (fileops.c:449)
+==5654==    by 0x48E5AD0: _IO_new_do_write (fileops.c:426)
+==5654==    by 0x48E5AD0: _IO_do_write@@GLIBC_2.2.5 (fileops.c:423)
+==5654==    by 0x48E7CB1: _IO_flush_all_lockp (genops.c:706)
+==5654==    by 0x48E7F08: _IO_cleanup (genops.c:866)
+==5654==    by 0x489BB31: __run_exit_handlers (exit.c:130)
+==5654==    by 0x489BBDF: exit (exit.c:139)
+==5654==    by 0x48790B9: (below main) (libc-start.c:342)
+==5654==  Address 0x4a47040 is 0 bytes inside a block of size 1,024 alloc'd
+==5654==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x48D6E83: _IO_file_doallocate (filedoalloc.c:101)
+==5654==    by 0x48E704F: _IO_doallocbuf (genops.c:347)
+==5654==    by 0x48E60AF: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==5654==    by 0x48E4834: _IO_new_file_xsputn (fileops.c:1244)
+==5654==    by 0x48E4834: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==5654==    by 0x48D9677: puts (ioputs.c:40)
+==5654==    by 0x109319: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== 
+==5654== HEAP SUMMARY:
+==5654==     in use at exit: 0 bytes in 0 blocks
+==5654==   total heap usage: 2 allocs, 2 frees, 1,042 bytes allocated
+==5654== 
+==5654== All heap blocks were freed -- no leaks are possible
+==5654== 
+==5654== ERROR SUMMARY: 36 errors from 14 contexts (suppressed: 0 from 0)
+==5654== 
+==5654== 1 errors in context 1 of 14:
+==5654== Syscall param write(buf) points to uninitialised byte(s)
+==5654==    at 0x49631E7: write (write.c:26)
+==5654==    by 0x48E400C: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1181)
+==5654==    by 0x48E5AD0: new_do_write (fileops.c:449)
+==5654==    by 0x48E5AD0: _IO_new_do_write (fileops.c:426)
+==5654==    by 0x48E5AD0: _IO_do_write@@GLIBC_2.2.5 (fileops.c:423)
+==5654==    by 0x48E7CB1: _IO_flush_all_lockp (genops.c:706)
+==5654==    by 0x48E7F08: _IO_cleanup (genops.c:866)
+==5654==    by 0x489BB31: __run_exit_handlers (exit.c:130)
+==5654==    by 0x489BBDF: exit (exit.c:139)
+==5654==    by 0x48790B9: (below main) (libc-start.c:342)
+==5654==  Address 0x4a47040 is 0 bytes inside a block of size 1,024 alloc'd
+==5654==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x48D6E83: _IO_file_doallocate (filedoalloc.c:101)
+==5654==    by 0x48E704F: _IO_doallocbuf (genops.c:347)
+==5654==    by 0x48E60AF: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:745)
+==5654==    by 0x48E4834: _IO_new_file_xsputn (fileops.c:1244)
+==5654==    by 0x48E4834: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==5654==    by 0x48D9677: puts (ioputs.c:40)
+==5654==    by 0x109319: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== 
+==5654== 1 errors in context 2 of 14:
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EFA9: __strlen_sse2 (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x48CDE94: __vfprintf_internal (vfprintf-internal.c:1688)
+==5654==    by 0x48B6EBE: printf (printf.c:33)
+==5654==    by 0x1093DA: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== 
+==5654== 1 errors in context 3 of 14:
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EFA9: __strlen_sse2 (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x48F4502: strdup (strdup.c:41)
+==5654==    by 0x10936F: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== 
+==5654== 1 errors in context 4 of 14:
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC2D: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x109360: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== 
+==5654== 1 errors in context 5 of 14:
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC57: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x1092D1: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== 
+==5654== 1 errors in context 6 of 14:
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC41: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x1092D1: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== 
+==5654== 2 errors in context 7 of 14:
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC2D: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x1092EA: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== 
+==5654== 2 errors in context 8 of 14:
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC2D: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x1092D1: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== 
+==5654== 3 errors in context 9 of 14:
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EFB8: __strlen_sse2 (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x48CDE94: __vfprintf_internal (vfprintf-internal.c:1688)
+==5654==    by 0x48B6EBE: printf (printf.c:33)
+==5654==    by 0x1093DA: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== 
+==5654== 3 errors in context 10 of 14:
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EFB8: __strlen_sse2 (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x48F4502: strdup (strdup.c:41)
+==5654==    by 0x10936F: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== 
+==5654== 3 errors in context 11 of 14:
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC37: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x109360: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== 
+==5654== 4 errors in context 12 of 14:
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x48E488F: _IO_new_file_xsputn (fileops.c:1219)
+==5654==    by 0x48E488F: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==5654==    by 0x48CC27B: __vfprintf_internal (vfprintf-internal.c:1688)
+==5654==    by 0x48B6EBE: printf (printf.c:33)
+==5654==    by 0x1093DA: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== 
+==5654== 6 errors in context 13 of 14:
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC37: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x1092EA: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== 
+==5654== 7 errors in context 14 of 14:
+==5654== Conditional jump or move depends on uninitialised value(s)
+==5654==    at 0x483EC37: strcat (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==5654==    by 0x1092D1: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==    by 0x1093BE: main (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654==  Uninitialised value was created by a stack allocation
+==5654==    at 0x109251: str_replace (in /mnt/d/KHTN/Y3S2/[CS333]OS/Lab/SimpleShell/test.out)
+==5654== 
+==5654== ERROR SUMMARY: 36 errors from 14 contexts (suppressed: 0 from 0)

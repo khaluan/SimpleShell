@@ -34,7 +34,7 @@ int execute_command(struct Command cmd){
         pid_t pid = fork();
         if (pid == 0){
             execvp(cmd.command, cmd.argv);
-            exit(0);
+            // exit(0);
         }
         return pid;
     } 
