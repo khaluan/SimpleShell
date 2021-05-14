@@ -32,18 +32,7 @@ void pwd(){
 }
 
 void cd(char* new_dir){
-    printf("[cd] %s\n", new_dir);
-    char s[100];
-  
-    // printing current working directory
-    printf("%s\n", getcwd(s, 100));
-  
-    // using the command
     chdir(new_dir);
-  
-    // printing current working directory
-    printf("%s\n", getcwd(s, 100));
-  
 }
 
 void sort(char* filename){
@@ -52,28 +41,29 @@ void sort(char* filename){
     size_t len = 0;
     ssize_t read;
 
-    fp = fopen(filename, "r");
-    if (fp == NULL){
-        fprintf(stderr,  "File %s not found\n", filename);
-        return;
+    if (filename == NULL){
+        fp = stdin;
     }
-        
-    size_t cnt = 0;
-    while ((read = getline(&line, &len, fp)) != -1) 
-        ++cnt;
+    else {
+        fp = fopen(filename, "r");
+        if (fp == NULL){
+            fprintf(stderr,  "File %s not found\n", filename);
+            return;
+        }
+    }
 
-    fclose(fp);
-    
     char** lines;
-    lines = malloc(cnt * sizeof(char*));
-
-    fp = fopen(filename, "r");
-    for (size_t i = 0; i < cnt; ++i){
-        read = getline(&line, &len, fp);
+    size_t cnt = 0;
+    lines = malloc(1000 * sizeof(char*));
+        
+    while ((read = getline(&line, &len, fp)) != -1){
         if (line[read- 1] == '\n') line[read-1] = '\0';
-        lines[i] = strdup(line);
+            lines[cnt] = strdup(line); 
+        ++cnt;    
     }
-    fclose(fp);
+
+    if (fp != stdin)
+        fclose(fp);
 
     qsort(lines, cnt, sizeof(char*), cmp_str);
     for (int i = 0; i < cnt; ++i){
