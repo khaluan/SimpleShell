@@ -14,7 +14,7 @@ void ls(){
     struct dirent *ent;
     if ((dir = opendir (current_directory)) != NULL) {
         while ((ent = readdir (dir)) != NULL) {
-            printf ("%s\n", ent->d_name);
+            printf("%s\n", ent->d_name);
         }
         closedir (dir);
     } else {
@@ -39,7 +39,7 @@ void cd(char* new_dir){
     printf("%s\n", getcwd(s, 100));
   
     // using the command
-    chdir("..");
+    chdir(new_dir);
   
     // printing current working directory
     printf("%s\n", getcwd(s, 100));
@@ -58,16 +58,31 @@ void sort(char* filename){
         return;
     }
         
-
-    while ((read = getline(&line, &len, fp)) != -1) {
-        printf("Retrieved line of length %zu:\n", read);
-        printf("%s", line);
-    }
+    size_t cnt = 0;
+    while ((read = getline(&line, &len, fp)) != -1) 
+        ++cnt;
 
     fclose(fp);
-    if (line)
-        free(line);
-    exit(EXIT_SUCCESS);
+    
+    char** lines;
+    lines = malloc(cnt * sizeof(char*));
+
+    fp = fopen(filename, "r");
+    for (size_t i = 0; i < cnt; ++i){
+        read = getline(&line, &len, fp);
+        if (line[read- 1] == '\n') line[read-1] = '\0';
+        lines[i] = strdup(line);
+    }
+    fclose(fp);
+
+    qsort(lines, cnt, sizeof(char*), cmp_str);
+    for (int i = 0; i < cnt; ++i){
+        printf("%s\n", lines[i]);
+        fflush(stdout);
+        free(lines[i]);
+    }
+    free(lines);
+    return;
 }
 
 void display_history(){

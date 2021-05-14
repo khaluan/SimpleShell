@@ -1,6 +1,5 @@
 compile:
 	@gcc *.c -o shell.out 
-	./shell.out
 
 test_nhan:
 	gcc test.c -o nhan.out 

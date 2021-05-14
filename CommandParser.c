@@ -30,3 +30,10 @@ enum LineType classify_line(char line[]){
     }
     return FOREGROUND;
 }
+
+bool is_builtin(char command[]){
+    for (size_t i = 0; i < BUILTIN_SIZE; ++i)
+        if (strcmp(command, builtin_functions[i]) == 0)
+            return true;
+    return false;
+}

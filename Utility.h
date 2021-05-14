@@ -19,4 +19,8 @@ struct Command {
 };
 
 char* str_replace(char* string, const char* find, const char* replace);
+int cmp_str(const void* a, const void* b);
+enum PipeType {
+    WRITE_PIPE, READ_PIPE, NONE
+};
 #endif

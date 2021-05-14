@@ -13,3 +13,7 @@ char* str_replace(char* string, const char* find, const char* replace){
     strcat(buffer, tmp);
     return strdup(buffer);
 }
+
+int cmp_str(const void* a, const void* b){
+    return strcmp(*(char**)a, *(char**)b);
+}
