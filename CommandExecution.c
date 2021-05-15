@@ -1,4 +1,6 @@
 #include "CommandExecution.h"
+#include <fcntl.h>
+
 void execute_line(char line[]){
     int pipefd[2];
     pipe(pipefd);
@@ -14,6 +16,7 @@ void execute_line(char line[]){
             run_pipe(line);
             break;
         case REDIRECT:
+            run_redirect(line, pipefd);
             break;
         default:
             printf("This is not good\n");
@@ -21,7 +24,7 @@ void execute_line(char line[]){
     }
 }
 
-int execute_command(struct Command cmd, int pipefd[2], enum PipeType pipe_type){
+int execute_command(struct Command cmd, int pipefd[2], enum PipeType pipe_type, int redirectType, char * redirectStuff) {
     if (strcmp(cmd.command, builtin_functions[CD]) == 0){
         cd(cmd.argv[1]);
         return 0;
@@ -33,6 +36,17 @@ int execute_command(struct Command cmd, int pipefd[2], enum PipeType pipe_type){
     if (pid == 0){
         printf("Command %s with pid %d is running\n", cmd.command, getpid());
         config_pipe(pipefd, pipe_type);
+        if (redirectType == 1 /* >*/) {
+            int file_desc = open(redirectStuff,O_WRONLY | O_TRUNC);
+            if(file_desc < 0)  printf("Error opening the output file\n");
+            dup2(file_desc, 1);
+        }
+        else if (redirectType == 2 /* < */) {
+            int file_desc = open(redirectStuff, O_RDONLY);
+            if(file_desc < 0) printf("Error opening the input file\n");
+            dup2(file_desc, 0);
+        }
+
         if (strcmp(cmd.command, builtin_functions[PWD]) == 0)
             pwd(); 
         else if(strcmp(cmd.command, builtin_functions[LS]) == 0)
@@ -69,7 +83,7 @@ void config_pipe(int pipefd[2], enum PipeType pipe_type){
 
 void run_foreground(char command[], int pipefd[2]){
     struct Command cmd = parse_command(command);
-    int child = execute_command(cmd, pipefd, NONE);
+    int child = execute_command(cmd, pipefd, NONE, 0, NULL);
 
     waitpid(child, NULL, 0);
     
@@ -91,9 +105,49 @@ void run_background(char command[], int pipefd[2]){
     
     struct Command cmd = parse_command(command);
 
-    int child_pid = execute_command(cmd, pipefd, NONE);
+    int child_pid = execute_command(cmd, pipefd, NONE, 0, NULL);
     add_child_id(child_pid);
 
+}
+
+void run_redirect(char line[], int pipefd[2]) {
+    char redirectSign;
+    int i = 0;
+    for (; line[i] != '\0'; ++i){
+        if (line[i] == '>' || line[i] == '<') {
+            redirectSign = line[i];
+            break;
+        } 
+    }
+    if (line[i] == '\0') {
+        printf("Error in redirection ! \n");
+        return;
+    }
+
+    ++i;
+    char* token = malloc(sizeof(char) * i);
+    strncpy(token, line, i);
+    token[i - 1] = '\0';
+    printf("%s\n", token);
+    struct Command cmd1 = parse_command(token);
+    free(token);
+    
+    while(line[i] == ' ') ++ i;
+    size_t len = strlen(line) - i;
+    token = malloc(sizeof(char) * len);
+    strncpy(token, line + i, len);
+    printf("%s\n", token);
+    struct Command cmd2 = parse_command(token);
+    free(token);
+
+    if (redirectSign == '>') {
+        int child = execute_command(cmd1, pipefd, NONE, 1, cmd2.command);
+        waitpid(child, NULL, 0);
+    }
+    else if (redirectSign == '<') {
+        int child = execute_command(cmd1, pipefd, NONE, 2, cmd2.command);
+        waitpid(child, NULL, 0);
+    }
 }
 
 void run_pipe(char line[]){
@@ -119,8 +173,8 @@ void run_pipe(char line[]){
     int pipefd[2];
     pipe(pipefd);
     
-    int child2 = execute_command(cmd2, pipefd, READ_PIPE);
-    int child1 = execute_command(cmd1, pipefd, WRITE_PIPE);
+    int child2 = execute_command(cmd2, pipefd, READ_PIPE, 0, NULL);
+    int child1 = execute_command(cmd1, pipefd, WRITE_PIPE, 0, NULL);
     
     close(pipefd[0]);
     close(pipefd[1]);
