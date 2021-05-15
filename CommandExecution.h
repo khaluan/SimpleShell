@@ -28,6 +28,7 @@ void config_pipe(int pipefd[2], enum PipeType pipe_type);
 void end_pipe(int pipefd[2], enum PipeType pipe_type);
 void run_redirect(char line[], int pipefd[2]);
 void run_pipe(char line[]);
+void config_pipe(int pipefd[2], enum PipeType pipe_type);
 
 void init_environment();
 void signal_handler(int signum);

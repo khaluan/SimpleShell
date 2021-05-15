@@ -6,7 +6,6 @@ const char* builtin_functions[BUILTIN_SIZE] = {
 };
 
 void ls(){
-    printf("This should be printed in ls\n");
     char current_directory[256];
     getcwd(current_directory, 256);
 
@@ -25,7 +24,6 @@ void ls(){
 }
 
 void pwd(){
-    printf("This should be printed in pwd\n");
     char current_directory[256];
     getcwd(current_directory, 256);
     printf("%s\n", current_directory);
@@ -79,8 +77,4 @@ void display_history(){
     for (int i = HISTORY_SIZE - 1; i >= 0; --i)
         if (history[i] != NULL) 
             printf("%s\n", history[i]);
-}
-
-void last_command(){
-    return;
 }

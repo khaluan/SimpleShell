@@ -30,11 +30,11 @@ int execute_command(struct Command cmd, int pipefd[2], enum PipeType pipe_type, 
         return 0;
     }
 
-
     fflush(stdout);
     pid_t pid = fork();
     if (pid == 0){
-        printf("Command %s with pid %d is running\n", cmd.command, getpid());
+        // printf("Command %s with pid %d is running\n", cmd.command, getpid());
+        //SOMETHING HERE
         config_pipe(pipefd, pipe_type);
         if (redirectType == 1 /* >*/) {
             int file_desc = open(redirectStuff,O_WRONLY | O_TRUNC);
@@ -55,8 +55,6 @@ int execute_command(struct Command cmd, int pipefd[2], enum PipeType pipe_type, 
             sort(cmd.argv[1]);
         else if (strcmp(cmd.command, builtin_functions[HIST]) == 0)
             display_history();
-        else if (strcmp(cmd.command, builtin_functions[LAST_CMD]) == 0)
-            last_command();
         else    
             execvp(cmd.command, cmd.argv);
         exit(0);
@@ -158,7 +156,7 @@ void run_pipe(char line[]){
     char* token = malloc(sizeof(char) * i);
     strncpy(token, line, i);
     token[i - 1] = '\0';
-    printf("%s\n", token);
+    // printf("%s\n", token);
     struct Command cmd1 = parse_command(token);
     free(token);
     
@@ -166,7 +164,7 @@ void run_pipe(char line[]){
     size_t len = strlen(line) - i;
     token = malloc(sizeof(char) * len);
     strncpy(token, line + i, len);
-    printf("%s\n", token);
+    // printf("%s\n", token);
     struct Command cmd2 = parse_command(token);
     free(token);
 
@@ -221,7 +219,7 @@ void signal_handler(int signum){
     else if (signum == SIGCHLD){
         int status;
         pid_t pid = wait(&status);
-        fprintf(stderr, "Process with pid %d exit\n", pid);
+        //fprintf(stderr, "Process with pid %d exit\n", pid);
         if (pid > 0 && WIFEXITED(status) && remove_child_id(pid)){
             int exit_code = WEXITSTATUS(status);
             printf("Process %d exit with code %d", pid, exit_code);

@@ -1,10 +1,6 @@
 compile:
 	@gcc *.c -o shell.out 
 
-test_nhan:
-	gcc test.c -o nhan.out 
-	./nhan.out
-
 clean_up:
 	rm *.out
 

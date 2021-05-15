@@ -18,5 +18,4 @@ void pwd();
 void cd(char* new_dir);
 void sort(char* filename);
 void display_history();
-void last_command();
 #endif

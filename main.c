@@ -22,7 +22,6 @@ int main(int argc, char** argv){
         command[tmp - 1] = '\0';
         
         history_handler(&command);
-        printf("%s\n", command);
         if (strcmp(command, builtin_functions[EXIT]) == 0)
             break;
         else if (strcmp(command, "") == 0)
