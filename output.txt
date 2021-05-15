@@ -1,0 +1,1 @@
+This line will be displayed in the output file to serve for redirection testing purpose 

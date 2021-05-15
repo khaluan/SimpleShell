@@ -18,13 +18,15 @@ void add_child_id(int child_id);
 bool is_full();
 
 void execute_line(char line[]);
-int execute_command(struct Command cmd, int pipefd[2], enum PipeType pipe_type);
+int execute_command(struct Command cmd, int pipefd[2], enum PipeType pipe_type, int redirectType, char * redirectStuff);
+
 
 
 void run_foreground(char command[], int pipefd[2]);
 void run_background(char command[], int pipefd[2]);
 void config_pipe(int pipefd[2], enum PipeType pipe_type);
 void end_pipe(int pipefd[2], enum PipeType pipe_type);
+void run_redirect(char line[], int pipefd[2]);
 void run_pipe(char line[]);
 
 void init_environment();
